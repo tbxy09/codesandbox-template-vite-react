@@ -20,7 +20,6 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 
 import SvgIcon from "@mui/material/SvgIcon";
-import { debounce } from "lodash";
 /*
 Given the length of the following context, I'll be providing it in several parts. Please hold off on providing any responses until you've received all of the information.
 Part 1:  ```
@@ -188,17 +187,24 @@ export const TemplateList = ({ items, onSelect, onAdd }: TemplateListProps) => {
   return (
     <Accordion collapsible>
       <AccordionItem value="item">
-        <AccordionHeader expandIconPosition="end" color="blue" style={{ fontSize: "20px" }}>
+        <AccordionHeader
+          expandIconPosition="end"
+          color="blue"
+          style={{ fontSize: "20px" }}
+        >
           Accordion Header
           <button onClick={handleAddTemplate}>Add</button>
         </AccordionHeader>
         <AccordionPanel>
-          {items.map((item, index) => (
-            // <Text variant='small'>{item}</Text>
-            <p key={index} onClick={() => onSelect(item)}>
-              {item}
-            </p>
-          ))}
+          <table>
+            <tbody>
+              {items.map((item, index) => (
+                <tr key={index} onClick={() => onSelect(item)}>
+                  <td>{item}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
@@ -208,7 +214,11 @@ export const HistoryList = ({ items, onSelect }: HistoryListProps) => {
   return (
     <div className="history-list" style={{ backgroundColor: "gray" }}>
       {items.map((item) => (
-        <div key={item} onClick={() => onSelect(item)} style={{ fontSize: "20px" }}>
+        <div
+          key={item}
+          onClick={() => onSelect(item)}
+          style={{ fontSize: "20px" }}
+        >
           {item}
         </div>
       ))}

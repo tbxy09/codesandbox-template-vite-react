@@ -1,6 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 // import "./App.css";
+import {RowCard} from "./rowCard"
 import {TemplateList,templateList} from "./chatContentInput"
 
 function App() {
@@ -39,11 +40,11 @@ function App() {
   const handleTemplateSelect = ()=>{};
   const handleAddTemplate = ()=>{};
   return (
-    <TemplateList
+    <RowCard
     items={templateList}
     onSelect={handleTemplateSelect}
-    onAdd={handleAddTemplate}
   />
+
   )
 }
 
