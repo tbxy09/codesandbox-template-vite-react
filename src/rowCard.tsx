@@ -100,9 +100,9 @@ export type RowCardProps = {
               <Subtitle>Subtitle</Subtitle>
             {/* </Header> */}
             <Footer>
-              <FontAwesomeIcon icon={faClock} /> 
+              {/* <FontAwesomeIcon icon={faClock} />  */}
               <div>Footer text and html</div>
-              <Badge badgeContent={4} color="primary" />
+              {/* <Badge badgeContent={4} color="primary" /> */}
             </Footer>
           </Container>
         </AccordionSummary>
