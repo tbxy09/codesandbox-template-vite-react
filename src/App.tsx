@@ -40,12 +40,19 @@ function App() {
   const handleTemplateSelect = ()=>{};
   const handleAddTemplate = ()=>{};
   return (
+    <div>
       <RowCard
-      items={templateList}
-      onSelect={handleTemplateSelect}
-      type = ''
-    />
-  )
+        items={templateList}
+        onSelect={handleTemplateSelect}
+        type="textarea"
+      />
+      <RowCard
+        items={templateList}
+        onSelect={handleTemplateSelect}
+        type="table"
+      />
+    </div>
+  );
 }
 
 export default App;
