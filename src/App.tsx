@@ -40,11 +40,11 @@ function App() {
   const handleTemplateSelect = ()=>{};
   const handleAddTemplate = ()=>{};
   return (
-    <RowCard
-    items={templateList}
-    onSelect={handleTemplateSelect}
-  />
-
+      <RowCard
+      items={templateList}
+      onSelect={handleTemplateSelect}
+      type = ''
+    />
   )
 }
 
