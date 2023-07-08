@@ -1,53 +1,10 @@
-import React from "react";
-import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Typography,
-  TextareaAutosize,
-  IconButton,
-  Badge,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import React, { useState } from "react";
+import { Typography, TextareaAutosize, IconButton, Badge } from "@material-ui/core";
 import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faGlobe, faClock } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-// import styles from './RowCard.module.scss';
-
-// const Container = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: space-between;
-//   padding: 20px;
-//   background-color: #f9f9f9;
-// `;
-
-// const Header = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   width: 100%;
-// `;
-
-// const Title = styled.h1`
-//   font-size: 1.5em;
-//   color: palevioletred;
-// `;
-
-// const Subtitle = styled.h2`
-//   font-size: 1.2em;
-//   color: palevioletred;
-// `;
-
-// const Footer = styled.footer`
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   width: 100%;
-//   padding: 10px;
-//   background-color: #e9e9e9;
-// `;
+import { Table, Accordion, AccordionItem, AccordionHeader, AccordionPanel } from "@fluentui/react-components";
 
 const Container = styled.div`
   display: flex;
@@ -56,20 +13,20 @@ const Container = styled.div`
   justify-content: space-between;
   padding: 5px;
   width: 100%;
-  gap: 0px; // This creates space between the child elements
+  gap: 0px;
 `;
 
 const Title = styled.h2`
   display: flex;
   align-items: center;
-  font-size: 0.2em; // Decreased font size
+  font-size: 0.2em;
   color: palevioletred;
 `;
 
 const Subtitle = styled.text`
   display: flex;
   align-items: center;
-  font-size: 0.01em; // Decreased font size
+  font-size: 0.01em;
   color: palevioletred;
 `;
 
@@ -77,12 +34,16 @@ const Footer = styled.footer`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 1px; // Decreased padding
-  font-size: 0.2em; // Decreased font size
+  padding: 1px;
+  font-size: 0.2em;
   background-color: #e9e9e9;
 `;
 
-// In your component's render method:
+const StatusBar = styled.div`
+  align-self: flex-end;
+  font-size: 0.2em;
+  color: gray;
+`;
 
 export type RowCardProps = {
   items: string[];
@@ -91,68 +52,64 @@ export type RowCardProps = {
 };
 
 export const RowCard = ({ items, onSelect, type }: RowCardProps) => {
+  const [textareaValue, setTextareaValue] = useState('');
+
+  const handleTextareaChange = (event) => {
+    setTextareaValue(event.target.value);
+  };
+
   return (
-    <Accordion>
-      <AccordionSummary
-        expandIcon={<ExpandMoreIcon />}
-        aria-controls="panel1a-content"
-        id="panel1a-header"
-      >
-        <Container>
-          {/* <Headers> */}
-          {/* <IconButton aria-label="emoji">
-                <EmojiEmotionsIcon />
-              </IconButton>
-              <FontAwesomeIcon icon={faHome} /> */}
-          <Title>
-            {/* <FontAwesomeIcon icon={faGlobe} />  */}
-            Title
-          </Title>
-          <Subtitle>Subtitle</Subtitle>
-          {/* </Header> */}
-          <Footer>
-            {/* <FontAwesomeIcon icon={faClock} />  */}
-            <div>Footer text and html</div>
-            {/* <Badge badgeContent={4} color="primary" /> */}
-          </Footer>
-        </Container>
-      </AccordionSummary>
-      <AccordionDetails>
-        {type === "table" && (
-          <table>
-            <tbody>
-              {items.map((item, index) => (
-                <tr key={index} onClick={() => onSelect(item)}>
-                  <td>{item}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-        {type === "textarea" && (
-          <TextareaAutosize
-            minRows={3}
-            style={{
-              width: "100%",
-              backgroundColor: "#333333",
-              color: "white",
-            }}
-            placeholder="Expanded content..."
-          />
-        )}
-        {type === "accordion" && (
-          <Accordion>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls="panel2a-content"
-              id="panel2a-header"
-            >
-              <Typography>Sub Accordion Header</Typography>
-            </AccordionSummary>
-            <AccordionDetails>Sub Accordion Content</AccordionDetails>
-          </Accordion>
-        )}
-      </AccordionDetails>
+    <Accordion collapsible>
+      <AccordionItem value="1">
+        <AccordionHeader expandIconPosition="end">
+          <Container>
+            <Title>Title</Title>
+            <Subtitle>Subtitle</Subtitle>
+            <Footer>
+              <div>Footer text and html</div>
+            </Footer>
+          </Container>
+        </AccordionHeader>
+        <AccordionPanel>
+          {type === "table" && (
+            <Table>
+              <tbody>
+                {items.map((item, index) => (
+                  <tr key={index} onClick={() => onSelect(item)}>
+                    <td>{item}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
+          {type === "textarea" && (
+            <>
+              <TextareaAutosize
+                minRows={3}
+                style={{
+                  width: "100%",
+                  backgroundColor: "#333333",
+                  color: "white",
+                }}
+                placeholder="Expanded content..."
+                value={textareaValue}
+                onChange={handleTextareaChange}
+              />
+              <StatusBar>{textareaValue.length} tokens</StatusBar>
+            </>
+          )}
+          {type === "accordion" && (
+            <Accordion collapsible>
+              <AccordionItem value="1">
+              <AccordionHeader expandIconPosition="end">
+                  <Typography>Sub Accordion Header</Typography>
+                </AccordionHeader>
+                <AccordionPanel>Sub Accordion Content</AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          )}
+        </AccordionPanel>
+      </AccordionItem>
     </Accordion>
   );
 };
