@@ -105,7 +105,7 @@ export const templateList: TableItem[] = [
     // version: {key: 'version', label: 'Version', value: '1.0'},
     // created_at: { key: 'created_at', label: 'Created At', value: new Date() },
     updated_at: { key: 'updated_at', label: 'Updated At', value: new Date().toDateString() },
-
+    action: { key: 'action', label: 'action', value:'' },
   },
   {
     // id: {key: 'id', label: 'ID', value: '1'},
@@ -115,7 +115,7 @@ export const templateList: TableItem[] = [
     // version: {key: 'version', label: 'Version', value: '1.0'},
     // created_at: { key: 'created_at', label: 'Created At', value: new Date() },
     updated_at: { key: 'updated_at', label: 'Updated At', value: new Date().toDateString() },
-
+    action: { key: 'action', label: 'action', value:'' }
   }
 ];
 export const historyList = [

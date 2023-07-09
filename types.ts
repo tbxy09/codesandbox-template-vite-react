@@ -71,6 +71,7 @@ export interface TemplateItem {
   description?: TableField
   created_at?: TableField;
   updated_at?: TableField;
+  action?: TableField;
 }
 export type TableItem = TemplateItem | FileItem;
 export interface RowCardProps {

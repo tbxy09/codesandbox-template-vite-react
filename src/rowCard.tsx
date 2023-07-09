@@ -3,8 +3,8 @@ import * as React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faGlobe, faClock } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import {  Accordion,  AccordionItem,  AccordionHeader,  AccordionPanel,  Text,  Button,  Field,  ProgressBar,  makeStyles,  Avatar,  TableBody,  TableCell,  TableRow,  Table,  TableHeader,  TableHeaderCell,  TableCellLayout,} from "@fluentui/react-components";
-import {  FolderRegular,  EditRegular,  OpenRegular,  DocumentRegular,  PeopleRegular,  DocumentPdfRegular,  VideoRegular,  Important16Regular,  FlagRegular} from "@fluentui/react-icons";
+import { Accordion,  AccordionItem,  AccordionHeader,  AccordionPanel,  Text,  Button,  Field,  ProgressBar,  makeStyles,  Avatar,  TableBody,  TableCell,  TableRow,  Table,  TableHeader,  TableHeaderCell,  TableCellLayout, useArrowNavigationGroup,useFocusableGroup} from "@fluentui/react-components";
+import {  DeleteRegular, FolderRegular,  EditRegular,  OpenRegular,  DocumentRegular,  PeopleRegular,  DocumentPdfRegular,  VideoRegular,  Important16Regular,  FlagRegular} from "@fluentui/react-icons";
 import { TableItem, Column } from "../types";
 // import { FlagRegular, Important16Regular } from "@fluentui/react-icons";
 
@@ -46,7 +46,6 @@ const StatusBar = styled.div`
   font-size: 0.2em;
   color: gray;
 `;
-
 const useStyles = makeStyles({
   thickProgressBar: {
     height: "20px", // Adjust this value to change the thickness of the progress bar
@@ -64,6 +63,10 @@ interface RowCardProps {
 export const RowCard = ({ items, onSelect, type, columns }: RowCardProps) => {
   const [textareaValue, setTextareaValue] = useState("");
   const styles = useStyles();
+  const keyboardNavAttr = useArrowNavigationGroup({ axis: "grid" });
+  const focusableGroupAttr = useFocusableGroup({
+    tabBehavior: "limited-trap-focus",
+  });
   const handleTextareaChange = (event: {
     target: { value: React.SetStateAction<string> };
   }) => {
@@ -132,6 +135,12 @@ export const RowCard = ({ items, onSelect, type, columns }: RowCardProps) => {
                     {item.updated_at?.value?.toString()}
                   </TableCellLayout>
                 </TableCell>
+                <TableCell role="gridcell" tabIndex={0} {...focusableGroupAttr}>
+              <TableCellLayout>
+                <Button icon={<EditRegular />} aria-label="Edit" />
+                <Button icon={<DeleteRegular />} aria-label="Delete" />
+              </TableCellLayout>
+            </TableCell>
               </TableRow>
             ))}
           </TableBody>
