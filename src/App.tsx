@@ -1,8 +1,8 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 // import "./App.css";
-import {RowCard} from "./rowCard"
-import {TemplateList,templateList} from "./chatContentInput"
+import { RowCard } from "./rowCard";
+import { TemplateList, templateList } from "./chatContentInput";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -37,8 +37,8 @@ function App() {
   //     </p>
   //   </div>
   // );
-  const handleTemplateSelect = ()=>{};
-  const handleAddTemplate = ()=>{};
+  const handleTemplateSelect = () => {};
+  const handleAddTemplate = () => {};
   return (
     <div>
       <RowCard
