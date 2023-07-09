@@ -101,7 +101,7 @@ export const RowCard = ({ items, onSelect, type, columns }: RowCardProps) => {
           <Table size="extra-small" aria-label="Table with extra-small size">
           <TableHeader>
             <TableRow>
-              {columns.map((column) => {
+              {columns?.map((column) => {
                 if (items[0].hasOwnProperty(column.key)) {
                   return (
                     <TableHeaderCell key={column.key}>
