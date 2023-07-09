@@ -4,7 +4,7 @@ import reactLogo from "./assets/react.svg";
 import { RowCard } from "./rowCard";
 import { TemplateList, templateList } from "./chatContentInput";
 import { FluentProvider, webLightTheme } from "@fluentui/react-components";
-
+import {Column} from "../types"
 import { IPartialTheme } from '@fluentui/react/lib/Styling';
 
 
@@ -111,6 +111,13 @@ function App() {
   //     <ThemeProvider theme={myTheme}>
   //       {/* Your application code here */}
   //     </ThemeProvider>
+  const columns: Column[] = [
+    { key: "name", label: "Name" },
+    { key: "version", label: "Version" },
+    { key: "description", label: "Description" },
+    { key: "created_at", label: "Created at" },
+    { key: "updated_at", label: "Updated at" },
+  ];
   return (
     <div>
     <FluentProvider theme={webLightTheme}>
@@ -122,6 +129,7 @@ function App() {
         <RowCard
           items={templateList}
           onSelect={handleTemplateSelect}
+          columns={columns}
           type="table"
         />
       </FluentProvider>,

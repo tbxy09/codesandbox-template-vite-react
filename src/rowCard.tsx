@@ -5,6 +5,7 @@ import { faHome, faGlobe, faClock } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import {  Accordion,  AccordionItem,  AccordionHeader,  AccordionPanel,  Text,  Button,  Field,  ProgressBar,  makeStyles,  Avatar,  TableBody,  TableCell,  TableRow,  Table,  TableHeader,  TableHeaderCell,  TableCellLayout,} from "@fluentui/react-components";
 import {  FolderRegular,  EditRegular,  OpenRegular,  DocumentRegular,  PeopleRegular,  DocumentPdfRegular,  VideoRegular,  Important16Regular,  FlagRegular} from "@fluentui/react-icons";
+import { TableItem, Column } from "../types";
 // import { FlagRegular, Important16Regular } from "@fluentui/react-icons";
 
 const Container = styled.div`
@@ -46,12 +47,6 @@ const StatusBar = styled.div`
   color: gray;
 `;
 
-export type RowCardProps = {
-  items: string[];
-  onSelect: (item: string) => void;
-  type: string;
-};
-
 const useStyles = makeStyles({
   thickProgressBar: {
     height: "20px", // Adjust this value to change the thickness of the progress bar
@@ -60,7 +55,13 @@ const useStyles = makeStyles({
   },
 });
 // const colorPaletteRedBackground3 = "#ff0000";
-export const RowCard = ({ items, onSelect, type }: RowCardProps) => {
+interface RowCardProps {
+  items : TableItem[];
+  onSelect: (value: TableItem) => void;
+  columns?: Column[];
+  type: string;
+};
+export const RowCard = ({ items, onSelect, type, columns }: RowCardProps) => {
   const [textareaValue, setTextareaValue] = useState("");
   const styles = useStyles();
   const handleTextareaChange = (event: {
@@ -100,38 +101,30 @@ export const RowCard = ({ items, onSelect, type }: RowCardProps) => {
           <Table size="extra-small" aria-label="Table with extra-small size">
           <TableHeader>
             <TableRow>
-              {columns.map((column) => (
-                <TableHeaderCell key={column.columnKey}>
-                  {column.label}
-                </TableHeaderCell>
-              ))}
+              {columns.map((column) => {
+                if (items[0].hasOwnProperty(column.key)) {
+                  return (
+                    <TableHeaderCell key={column.key}>
+                      {column.label}
+                    </TableHeaderCell>
+                  );
+                }
+                return null;
+              })}
             </TableRow>
           </TableHeader>
           <TableBody>
-            {items.map((item) => (
-              <TableRow key={item.file.label}>
+            {items.map((item:TableItem) => (
+              <TableRow key={item.name?.label}>
                 <TableCell>
-                  <TableCellLayout media={item.file.icon}>
-                    {item.file.label}
+                  <TableCellLayout media={item.name?.icon}>
+                    {item.name?.label}
                   </TableCellLayout>
                 </TableCell>
-                {/* <TableCell>
-                  <TableCellLayout
-                    media={
-                      <Avatar
-                        aria-label={item.version.label}
-                        name={item.version.label}
-                        badge={{ status: item.version.status }}
-                      />
-                    }
-                  >
-                    {item.version.label}
-                  </TableCellLayout>
-                </TableCell> */}
-                <TableCell>{item.lastUpdated.label}</TableCell>
+                <TableCell>{item.created_at?.label}</TableCell>
                 <TableCell>
-                  <TableCellLayout media={item.lastUpdate.icon}>
-                    {item.lastUpdate.label}
+                  <TableCellLayout media={item.created_at?.icon}>
+                    {item.created_at?.label}
                   </TableCellLayout>
                 </TableCell>
               </TableRow>
