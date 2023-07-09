@@ -121,6 +121,7 @@ function App() {
   return (
     <div>
     <FluentProvider theme={webLightTheme}>
+        <p>{templateList[0].name?.value?.toString()}</p>
         <RowCard
           items={templateList}
           onSelect={handleTemplateSelect}

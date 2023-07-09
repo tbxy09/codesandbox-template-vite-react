@@ -99,11 +99,22 @@ const template: TableItem = {
 export const templateList: TableItem[] = [
   {
     // id: {key: 'id', label: 'ID', value: '1'},
-    name: {key: 'name', label: 'Name', value: 'Template Message 1'},
-    description: {key: 'description', label: 'Description', value: 'give the changes as a complete modified version {modified_code} with {newversion} : the new requirement {requirement} based on the code below which is labeled as "selectall" with a current version of {version} and provide an explanation no more than 15 words of {explanation} about the changes {changes} ,"selectall":{{content}},"version": "{version}","requirement": the floating button should be locate at up-right of current tab,format the response as a pretty format JSON containing the following keys: modified_code, explanation in 15 words or less., changes, and the version number after changes "newversion". (no more other words, just the json)'},
-    version: {key: 'version', label: 'Version', value: '1.0'},
+    name: {key: 'name', label: 'Name', value: 'Template 1'},
+    description: {key: 'description', label: 'Description', value: 'give the changes as a complete modifi ...'},
+    // content: {key: 'description', label: 'Description', value: 'give the changes as a complete modified version {modified_code} with {newversion} : the new requirement {requirement} based on the code below which is labeled as "selectall" with a current version of {version} and provide an explanation no more than 15 words of {explanation} about the changes {changes} ,"selectall":{{content}},"version": "{version}","requirement": the floating button should be locate at up-right of current tab,format the response as a pretty format JSON containing the following keys: modified_code, explanation in 15 words or less., changes, and the version number after changes "newversion". (no more other words, just the json)'},
+    // version: {key: 'version', label: 'Version', value: '1.0'},
     // created_at: { key: 'created_at', label: 'Created At', value: new Date() },
-    updated_at: { key: 'updated_at', label: 'Updated At', value: new Date() },
+    updated_at: { key: 'updated_at', label: 'Updated At', value: new Date().toDateString() },
+
+  },
+  {
+    // id: {key: 'id', label: 'ID', value: '1'},
+    name: {key: 'name', label: 'Name', value: 'Template 1'},
+    description: {key: 'description', label: 'Description', value: 'give the changes as a  ...'},
+    // content: {key: 'description', label: 'Description', value: 'give the changes as a complete modified version {modified_code} with {newversion} : the new requirement {requirement} based on the code below which is labeled as "selectall" with a current version of {version} and provide an explanation no more than 15 words of {explanation} about the changes {changes} ,"selectall":{{content}},"version": "{version}","requirement": the floating button should be locate at up-right of current tab,format the response as a pretty format JSON containing the following keys: modified_code, explanation in 15 words or less., changes, and the version number after changes "newversion". (no more other words, just the json)'},
+    // version: {key: 'version', label: 'Version', value: '1.0'},
+    // created_at: { key: 'created_at', label: 'Created At', value: new Date() },
+    updated_at: { key: 'updated_at', label: 'Updated At', value: new Date().toDateString() },
 
   }
 ];

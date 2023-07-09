@@ -62,6 +62,7 @@ export interface FileItem {
   description?: TableField;
   created_at?: TableField;
   updated_at?: TableField;
+  action?: TableField;
 }
 export interface TemplateItem {
   id?: TableField;
@@ -83,11 +84,5 @@ export type Column = {
   label: string;
 };
 // custom columns for both template list and file upload list
-export const columns: Column[] = [
-  { key: "name", label: "Name" },
-  { key: "version", label: "Version" },
-  { key: "description", label: "Description" },
-  { key: "created_at", label: "Created at" },
-  { key: "updated_at", label: "Updated at" },
-];
+
 

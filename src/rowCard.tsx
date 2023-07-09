@@ -90,7 +90,7 @@ export const RowCard = ({ items, onSelect, type, columns }: RowCardProps) => {
               Title
               {/* <Important16Regular /> */}
             </Title>
-            <Subtitle>Extract colors from an image to</Subtitle>
+            <Subtitle>Add Hove over</Subtitle>
             {/* <Footer>
               <div>Footer text and html</div>
             </Footer> */}
@@ -118,13 +118,18 @@ export const RowCard = ({ items, onSelect, type, columns }: RowCardProps) => {
               <TableRow key={item.name?.label}>
                 <TableCell>
                   <TableCellLayout media={item.name?.icon}>
-                    {item.name?.label}
+                    {item.name?.value?.toString()}
                   </TableCellLayout>
                 </TableCell>
-                <TableCell>{item.created_at?.label}</TableCell>
+                {/* <TableCell>{item.version?.value}</TableCell> */}
                 <TableCell>
-                  <TableCellLayout media={item.created_at?.icon}>
-                    {item.created_at?.label}
+                  <TableCellLayout media={item.description?.icon}>
+                    {item.description?.value?.toString()}
+                  </TableCellLayout>
+                </TableCell>
+                <TableCell>
+                  <TableCellLayout media={item.updated_at?.icon}>
+                    {item.updated_at?.value?.toString()}
                   </TableCellLayout>
                 </TableCell>
               </TableRow>
